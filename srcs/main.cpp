@@ -5,45 +5,52 @@
 // Login   <maxime.lacroix@epitech.eu>
 // 
 // Started on  Mon Oct 23 16:10:47 2017 ze
-// Last update Mon Oct 23 17:48:07 2017 ze
+// Last update Wed Oct 25 16:29:29 2017 ze
 //
 
 #include "Main.hpp"
 
-int	print_err(std::string str)
+void	launchit(std::fstream &makefile, std::vector<std::string > &files)
 {
-  std::cerr << str << std::endl;
-  return (84);
+  std::vector<std::string>	lines;
+  std::string			tmp;
+
+  if (files.empty())
+    std::cout << "There are no extra files to check" << std::endl;
+  
+  while (std::getline(makefile, tmp))
+    lines.push_back(tmp);
 }
 
-void	launch(std::ifstream file)
+void	check_file(int ac, char **av)
 {
-  (void)file;
-  /*size_t x = 0;
-    
-  
-    while (file)
-    std::cout << file << std::endl; x++;
-    std::cout << x << std::cout;*/
-}
+  std::fstream			makefile;
+  std::fstream			test;
+  std::vector<std::string>	files;
 
-
-bool	check_file(std::string path)
-{
-  std::fstream	file;
-  
-  if (file.open(path))
-    return (false);
-  
-  launch(file);
+  if (ac == 1)
+    throw (Err("Usage:\n\t./303make Makefile [file1] [file2] [...]"));
+  makefile.open(av[1]);
+  if (makefile.fail())
+    throw (Err("File must exist !"));
+  if (ac > 2)
+    for (int	i = 2; i < ac; i++){
+      test.open(av[i]);
+      if (test.fail())
+	throw (Err("File " + (std::string)av[i] + " doesnt exist !"));
+      files.push_back(av[i]);}
+  launchit(makefile, files);
 }
 
 int main(int ac, char **av)
 {
-  if (ac == 1)
-    return (print_err("Usage:\n./303make Makefile [file]..."));
-  
-  if (check_file == false)
-    return (print_err("File must exist and be a Makefile"));
-  return (0);
+    try {
+      check_file(ac, av);
+    }
+    catch (Err &err)
+      {
+	err.print_msg();
+	return (84);
+      }
+    return (0);
 }
