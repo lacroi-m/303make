@@ -1,11 +1,11 @@
 //
-// main.cpp for  in /home/ze/303make
+// main.cpp for  in /home/kopiz/Workplace/MATHS/303make/srcs
 // 
-// Made by ze
-// Login   <maxime.lacroix@epitech.eu>
+// Made by Tom Jeammet
+// Login   <tom.jeammet@epitech.eu>
 // 
-// Started on  Mon Oct 23 16:10:47 2017 ze
-// Last update Thu Oct 26 15:17:25 2017 Tom Jeammet
+// Started on  Thu Oct 26 15:23:57 2017 Tom Jeammet
+// Last update Thu Oct 26 15:25:06 2017 Tom Jeammet
 //
 
 #include "Parser.hpp"
@@ -18,7 +18,6 @@ void	launchit(std::fstream &makefile, std::vector<std::string > &files)
 
   if (files.empty())
     std::cout << "There are no extra files to check" << std::endl;
-  
   while (std::getline(makefile, tmp))
     lines.push_back(tmp);
   pars.parseit(lines);
