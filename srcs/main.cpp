@@ -5,7 +5,7 @@
 // Login   <maxime.lacroix@epitech.eu>
 // 
 // Started on  Mon Oct 23 16:10:47 2017 ze
-// Last update Wed Oct 25 16:29:29 2017 ze
+// Last update Thu Oct 26 17:59:59 2017 ze
 //
 
 #include "Main.hpp"
@@ -14,12 +14,15 @@ void	launchit(std::fstream &makefile, std::vector<std::string > &files)
 {
   std::vector<std::string>	lines;
   std::string			tmp;
-
-  if (files.empty())
-    std::cout << "There are no extra files to check" << std::endl;
+  //  std::vector<Depend>		obj;
   
   while (std::getline(makefile, tmp))
     lines.push_back(tmp);
+  
+  parseit(lines);
+  
+  if (files.empty())
+    std::cout << "\nThere are no extra files to check" << std::endl;
 }
 
 void	check_file(int ac, char **av)

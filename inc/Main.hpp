@@ -5,12 +5,13 @@
 // Login   <maxime.lacroix@epitech.eu>
 // 
 // Started on  Mon Oct 23 16:23:08 2017 ze
-// Last update Mon Oct 23 20:12:25 2017 ze
+// Last update Thu Oct 26 18:00:46 2017 ze
 //
 
 
 #ifndef  _MAIN_HPP_
 #define  _MAIN_HPP_
+//#include "Depend.hpp"
 #include "exception.hpp"
 
 # include <cstdlib>
@@ -21,5 +22,7 @@
 # include <cstring>
 # include <sstream>
 
+
+void	parseit(std::vector<std::string > &lines);
 
 #endif
