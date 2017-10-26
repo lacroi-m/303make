@@ -5,21 +5,23 @@
 // Login   <maxime.lacroix@epitech.eu>
 // 
 // Started on  Mon Oct 23 16:10:47 2017 ze
-// Last update Wed Oct 25 16:29:29 2017 ze
+// Last update Thu Oct 26 15:17:25 2017 Tom Jeammet
 //
 
-#include "Main.hpp"
+#include "Parser.hpp"
 
 void	launchit(std::fstream &makefile, std::vector<std::string > &files)
 {
   std::vector<std::string>	lines;
   std::string			tmp;
+  Parser			pars;
 
   if (files.empty())
     std::cout << "There are no extra files to check" << std::endl;
   
   while (std::getline(makefile, tmp))
     lines.push_back(tmp);
+  pars.parseit(lines);
 }
 
 void	check_file(int ac, char **av)
@@ -34,11 +36,11 @@ void	check_file(int ac, char **av)
   if (makefile.fail())
     throw (Err("File must exist !"));
   if (ac > 2)
-    for (int	i = 2; i < ac; i++){
-      test.open(av[i]);
-      if (test.fail())
-	throw (Err("File " + (std::string)av[i] + " doesnt exist !"));
-      files.push_back(av[i]);}
+    for (int	i = 2; i < ac; i++)
+      {
+	test.open(av[i]);
+	files.push_back(av[i]);
+      }
   launchit(makefile, files);
 }
 
