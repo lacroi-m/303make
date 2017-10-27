@@ -1,4 +1,14 @@
-#include "exception.hpp"
+//
+// Exception.cpp for  in /home/kopiz/Workplace/MATHS/303make/srcs
+// 
+// Made by Tom Jeammet
+// Login   <tom.jeammet@epitech.eu>
+// 
+// Started on  Fri Oct 27 14:31:02 2017 Tom Jeammet
+// Last update Fri Oct 27 14:31:06 2017 Tom Jeammet
+//
+
+#include "Exception.hpp"
 
 //Ctor
 Err::Err(std::string msg)

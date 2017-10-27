@@ -1,11 +1,11 @@
 //
-// exception.hpp for  in /home/jeamme_t/Workplace/abstractVM_2016/inc
+// Exception.hpp for $ in /home/kopiz/Workplace/MATHS/303make/inc
 // 
 // Made by Tom Jeammet
 // Login   <tom.jeammet@epitech.eu>
 // 
-// Started on  Thu Jul 20 22:09:00 2017 Tom Jeammet
-// Last update Wed Sep 20 00:14:08 2017 Tom Jeammet
+// Started on  Fri Oct 27 14:27:11 2017 Tom Jeammet
+// Last update Fri Oct 27 14:27:15 2017 Tom Jeammet
 //
 
 #ifndef __EXCEPTION_HPP__
@@ -25,12 +25,12 @@ public:
   Err(std::string);
   //Dtor
   ~Err(void) throw ();
+  //Member
+  void					print_msg(void);
   //Setter
   void					set_msg(std::string);
   //Getter
   std::string				get_msg(void);
-  //Member
-  void					print_msg(void);
 };
 
 #endif /* ! __EXCEPTION_HPP__ */

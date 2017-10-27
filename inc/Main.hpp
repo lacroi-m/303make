@@ -5,24 +5,21 @@
 // Login   <maxime.lacroix@epitech.eu>
 // 
 // Started on  Mon Oct 23 16:23:08 2017 ze
-// Last update Thu Oct 26 18:00:46 2017 ze
+// Last update Fri Oct 27 16:24:16 2017 Tom Jeammet
 //
 
 
-#ifndef  _MAIN_HPP_
-#define  _MAIN_HPP_
-//#include "Depend.hpp"
-#include "exception.hpp"
+#ifndef  __MAIN_HPP__
+# define  __MAIN_HPP__
 
-# include <cstdlib>
 # include <iostream>
-# include <fstream>
-# include <vector>
 # include <string>
 # include <cstring>
-# include <sstream>
+# include <fstream>
 
+# include "Exception.hpp"
+# include "Print.hpp"
+# include "Parser.hpp"
+# include "Matrix.hpp"
 
-void	parseit(std::vector<std::string > &lines);
-
-#endif
+#endif /* ! __MAIN_HPP__ */
