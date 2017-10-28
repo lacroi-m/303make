@@ -5,7 +5,7 @@
 // Login   <tom.jeammet@epitech.eu>
 // 
 // Started on  Fri Oct 27 14:26:00 2017 Tom Jeammet
-// Last update Sat Oct 28 15:42:20 2017 Tom Jeammet
+// Last update Sat Oct 28 16:19:56 2017 Tom Jeammet
 //
 
 #include "Main.hpp"
@@ -22,10 +22,6 @@ void					launch(std::fstream &makefile, std::vector<std::string> &file)
   if (file.empty())
     {
       createMatrix(parser, parser.getFiles());
-      std::cout << std::endl;
-      print_stab(parser.getFiles());
-      std::cout << std::endl;
-      print_depends(parser.getDepends());
       std::cout << std::endl;
       printRelations(parser.getFiles(), parser.getDepends(), parser.getExe());
     }
