@@ -5,12 +5,12 @@
 // Login   <tom.jeammet@epitech.eu>
 // 
 // Started on  Fri Oct 27 14:26:00 2017 Tom Jeammet
-// Last update Fri Oct 27 15:22:51 2017 Tom Jeammet
+// Last update Sat Oct 28 15:42:20 2017 Tom Jeammet
 //
 
 #include "Main.hpp"
 
-void					launch(std::fstream &makefile, std::vector<std::string > &files)
+void					launch(std::fstream &makefile, std::vector<std::string> &file)
 {
   std::vector<std::string>		lines;
   std::string				tmp;
@@ -19,9 +19,15 @@ void					launch(std::fstream &makefile, std::vector<std::string > &files)
   while (std::getline(makefile, tmp))
     lines.push_back(tmp);
   parser.parse(lines);
-  if (files.empty())
+  if (file.empty())
     {
-      createMatrix(parser);
+      createMatrix(parser, parser.getFiles());
+      std::cout << std::endl;
+      print_stab(parser.getFiles());
+      std::cout << std::endl;
+      print_depends(parser.getDepends());
+      std::cout << std::endl;
+      printRelations(parser.getFiles(), parser.getDepends(), parser.getExe());
     }
   else
     {
@@ -31,7 +37,7 @@ void					launch(std::fstream &makefile, std::vector<std::string > &files)
 
 void					checks(int ac, char **av)
 {
-  std::vector<std::string>		files;
+  std::vector<std::string>		lines;
   std::fstream				makefile;
   std::fstream				test;
   int					i;
@@ -50,10 +56,10 @@ void					checks(int ac, char **av)
 	  for (i = 2; i < ac; i++)
 	    {
 	      test.open(av[i]);
-	      files.push_back(av[i]);
+	      lines.push_back(av[i]);
 	    }
 	}
-      launch(makefile, files);
+      launch(makefile, lines);
     }
 }
 

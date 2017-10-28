@@ -5,7 +5,7 @@
 // Login   <tom.jeammet@epitech.eu>
 // 
 // Started on  Fri Oct 27 14:11:34 2017 Tom Jeammet
-// Last update Fri Oct 27 14:36:50 2017 Tom Jeammet
+// Last update Sat Oct 28 15:42:44 2017 Tom Jeammet
 //
 
 #ifndef  __PRINT_HPP__
@@ -15,6 +15,9 @@
 # include <string>
 # include <iostream>
 
-void					print_stab(std::vector<std::string> &);
+# include "Depend.hpp"
+
+void					print_stab(std::vector<std::string>);
+void					print_depends(std::vector<Depend>);
 
 #endif /* ! __PRINT_HPP__ */

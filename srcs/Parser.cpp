@@ -5,7 +5,7 @@
 // Login   <tom.jeammet@epitech.eu>
 // 
 // Started on  Thu Oct 26 15:10:08 2017 Tom Jeammet
-// Last update Fri Oct 27 15:09:12 2017 Tom Jeammet
+// Last update Sat Oct 28 15:25:07 2017 Tom Jeammet
 //
 
 #include "Parser.hpp"
@@ -23,6 +23,50 @@ Parser::~Parser(void)
 }
 
 //Member
+void					Parser::sortDepends(void)
+{
+  std::vector<std::string>::iterator	jt;
+  std::vector<Depend>::iterator		it;
+  std::vector<std::string>		names;
+  std::vector<Depend>			depends;
+  std::vector<Depend>			final;
+  std::string				name;
+  Depend				tmp;
+
+
+  depends = getDepends();
+  for (it = depends.begin(); it != depends.end(); it++)
+    {
+      tmp = *it;
+      name = tmp.getName();
+      names.push_back(name);
+    }
+  std::sort(names.begin(), names.end());
+  for (jt = names.begin(); jt != names.end(); jt++)
+    {
+      name = *jt;
+      for (it = depends.begin(); it != depends.end(); it++)
+	{
+	  tmp = *it;
+	  if (((tmp.getName()).compare(name)) == 0)
+	    final.push_back(tmp);
+	}
+    }
+  setDepends(final);
+}
+
+void					Parser::completeFiles(void)
+{
+  std::vector<std::string>		files;
+  std::string				exe;
+
+  files = getFiles();
+  exe = getExe();
+  files.push_back(exe);
+  std::sort(files.begin(), files.end());
+  setFiles(files);
+}
+
 bool                                    Parser::isInVector(std::vector<std::string> &tab, std::string &str)
 {
   std::vector<std::string>::iterator    it;
@@ -72,7 +116,7 @@ void					Parser::parseLine(std::string &line, int pos)
   depends.push_back(dp);
 }
 
-void					Parser::parse(std::vector<std::string> &tab)
+void					Parser::parse(std::vector<std::string> tab)
 {
   std::vector<std::string>::iterator    it;
   std::string				tmp;
@@ -89,6 +133,8 @@ void					Parser::parse(std::vector<std::string> &tab)
 	    lines.push_back(*it);
         }
     }
+  completeFiles();
+  sortDepends();
 }
 
 //Getter

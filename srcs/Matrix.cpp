@@ -5,7 +5,7 @@
 // Login   <tom.jeammet@epitech.eu>
 // 
 // Started on  Fri Oct 27 15:18:20 2017 Tom Jeammet
-// Last update Fri Oct 27 16:35:07 2017 Tom Jeammet
+// Last update Sat Oct 28 15:02:18 2017 Tom Jeammet
 //
 
 #include "Matrix.hpp"
@@ -88,14 +88,10 @@ void					printMatrix(std::vector<std::string> &files, std::vector<Depend> &depen
     }
 }
 
-void                                    createMatrix(Parser &parser)
+void                                    createMatrix(Parser &parser, std::vector<std::string> files)
 {
-  std::vector<std::string>              files;
   std::vector<Depend>                   depends;
 
-  files = parser.getFiles();
-  files.push_back(parser.getExe());
-  std::sort(files.begin(), files.end());
   depends = parser.getDepends();
   printMatrix(files, depends);
 }
