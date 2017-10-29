@@ -5,7 +5,7 @@
 // Login   <maxime.lacroix@epitech.eu>
 // 
 // Started on  Mon Oct 23 16:23:08 2017 ze
-// Last update Sat Oct 28 14:59:39 2017 Tom Jeammet
+// Last update Sun Oct 29 15:32:16 2017 Tom Jeammet
 //
 
 
@@ -22,5 +22,6 @@
 # include "Parser.hpp"
 # include "Matrix.hpp"
 # include "Relations.hpp"
+# include "Compile.hpp"
 
 #endif /* ! __MAIN_HPP__ */

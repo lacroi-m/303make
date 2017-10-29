@@ -5,12 +5,12 @@
 // Login   <tom.jeammet@epitech.eu>
 // 
 // Started on  Fri Oct 27 14:26:00 2017 Tom Jeammet
-// Last update Sat Oct 28 16:19:56 2017 Tom Jeammet
+// Last update Sun Oct 29 16:54:01 2017 Tom Jeammet
 //
 
 #include "Main.hpp"
 
-void					launch(std::fstream &makefile, std::vector<std::string> &file)
+int					launch(std::fstream &makefile, std::string file, int ac)
 {
   std::vector<std::string>		lines;
   std::string				tmp;
@@ -19,7 +19,7 @@ void					launch(std::fstream &makefile, std::vector<std::string> &file)
   while (std::getline(makefile, tmp))
     lines.push_back(tmp);
   parser.parse(lines);
-  if (file.empty())
+  if (ac == 2)
     {
       createMatrix(parser, parser.getFiles());
       std::cout << std::endl;
@@ -27,16 +27,26 @@ void					launch(std::fstream &makefile, std::vector<std::string> &file)
     }
   else
     {
-      
+      if (!is_in_files(parser.getFiles(), file))
+	return (84);
+      else
+	{
+	  printCompiles(parser, file);
+	  if (file.compare(parser.getExe()) == 0)
+	    std::cout << std::endl;
+	  else
+	    print_exeLine(parser.getDepends(), parser.getExe());
+	}
     }
+  return (0);
 }
 
-void					checks(int ac, char **av)
+int					checks(int ac, char **av)
 {
   std::vector<std::string>		lines;
   std::fstream				makefile;
   std::fstream				test;
-  int					i;
+  int					ret;
 
   if (ac < 2)
     throw (Err("Usage:\n\t./303make Makefile [file]"));
@@ -47,23 +57,26 @@ void					checks(int ac, char **av)
     throw (Err("Usage:\n\t./303make Makefile [file]"));
   else
     {
-      if (ac > 2)
+      if (ac == 2)
+	launch(makefile, "", ac);
+      if (ac == 3)
 	{
-	  for (i = 2; i < ac; i++)
-	    {
-	      test.open(av[i]);
-	      lines.push_back(av[i]);
-	    }
+	  test.open(av[2]);
+	  if ((ret = launch(makefile, av[2], ac)) == 84)
+	    return (ret);
 	}
-      launch(makefile, lines);
     }
+  return (0);
 }
 
 int					main(int ac, char **av)
 {
+  int					ret;
+  
     try
       {
-	checks(ac, av);
+	if ((ret = checks(ac, av)) == 84)
+	  return (84);
       }
     catch (Err &err)
       {

@@ -5,7 +5,7 @@
 // Login   <tom.jeammet@epitech.eu>
 // 
 // Started on  Thu Oct 26 14:38:46 2017 Tom Jeammet
-// Last update Sat Oct 28 15:24:50 2017 Tom Jeammet
+// Last update Sun Oct 29 15:13:56 2017 Tom Jeammet
 //
 
 #ifndef __PARSER_HPP__
@@ -13,7 +13,6 @@
 
 # include <string>
 # include <vector>
-# include <sstream>
 # include <algorithm>
 
 # include "Depend.hpp"
@@ -21,7 +20,6 @@
 class					Parser
 {
 private:
-  std::vector<std::string>		lines;
   std::vector<std::string>		files;
   std::vector<Depend>			depends;
   std::string				exe;
@@ -35,10 +33,11 @@ public:
   void					sortDepends(void);
   void					completeFiles(void);
   bool					isInVector(std::vector<std::string> &, std::string &);
-  void					parseLine(std::string &, int);
+  Depend				addCompile(Depend, std::string);
+  Depend				parseFiles(Depend, std::string, int);
+  void					addToFiles(Depend);
   void					parse(std::vector<std::string>);
   //Getter
-  std::vector<std::string>		getLines(void);
   std::vector<std::string>		getFiles(void);
   std::vector<Depend>			getDepends(void);
   std::string				getExe(void);
